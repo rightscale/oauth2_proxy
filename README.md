@@ -1,7 +1,8 @@
 oauth2_proxy
 =================
-
-<small>(This project was renamed from Google Auth Proxy - May 2015)</small>
+**This fork** adds docker support in order to set-up oauth2_proxy as an HTTPS service using
+[jwilder/nginx_proxy](https://github.com/jwilder/nginx_proxy) and
+[jrcs/letsencrypt-nginx-proxy-companion](https://github.com/jrcs/letsencrypt-nginx-proxy-companion).
 
 A reverse proxy and static file server that provides authentication using Providers (Google, Github, and others)
 to validate accounts by email, domain or group.
