@@ -6,6 +6,8 @@ go:
   - 1.6.2
 
 before_install:
+  - docker -v
+  - docker login --help
   - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 
 script:
