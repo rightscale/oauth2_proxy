@@ -6,6 +6,7 @@ go:
   - 1.6.2
 
 before_install:
+  - sudo apt-get update -qq && sudo apt-get -y --force-yes -o Dpkg::Options::="--force-confnew" install $APT_DOCKER_PKG && docker -v
   - docker -v
   - docker login --help
   - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
