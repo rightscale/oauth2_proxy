@@ -18,9 +18,9 @@ script:
   - ./test.sh
   - go build .
   - git_ref=$(git symbolic-ref HEAD 2>/dev/null)
-  - docker build --build-arg gitref=$git_ref -t rightscale/crs:$TRAVIS_BRANCH -t rightscale/crs:latest .
-  - docker push rightscale/crs:$TRAVIS_BRANCH
-  - docker push rightscale/crs:latest
+  - docker build --build-arg gitref=$git_ref -t rightscale/oauth2_proxy:$TRAVIS_BRANCH -t rightscale/oauth2_proxy:latest .
+  - docker push rightscale/oauth2_proxy:$TRAVIS_BRANCH
+  - docker push rightscale/oauth2_proxy:latest
 
 sudo: false
 notifications:
