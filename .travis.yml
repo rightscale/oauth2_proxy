@@ -1,12 +1,24 @@
+sudo: required
+services: docker
+
 language: go
 go:
-  - 1.5.4
   - 1.6.2
+
+before_install:
+  - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+
 script:
   - curl -s https://raw.githubusercontent.com/pote/gpm/v1.3.2/bin/gpm > gpm
   - chmod +x gpm
   - ./gpm install
   - ./test.sh
+  - go build .
+  - git_ref=$(git symbolic-ref HEAD 2>/dev/null)
+  - docker build --build-arg gitref=$git_ref -t rightscale/crs:$TRAVIS_BRANCH -t rightscale/crs:latest .
+  - docker push rightscale/crs:$TRAVIS_BRANCH
+  - docker push rightscale/crs:latest
+
 sudo: false
 notifications:
   email: false
