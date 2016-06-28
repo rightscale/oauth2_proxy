@@ -4,7 +4,7 @@ COPY oauth2_proxy /root
 WORKDIR /root
 
 VOLUME /conf
-EXPOSE 8000
+EXPOSE 4180
 
 ENTRYPOINT ["./oauth2_proxy", "-config", "/conf/oauth2_proxy.cfg"]
 
