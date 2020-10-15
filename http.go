@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"crypto/tls"
 	"log"
 	"net"
@@ -24,9 +25,13 @@ func (s *Server) ListenAndServe() {
 }
 
 func (s *Server) ServeHTTP() {
-	u, err := url.Parse(s.Opts.HttpAddress)
+	httpAddress := s.Opts.HttpAddress
+	if !strings.HasPrefix(httpAddress, "http://") {
+		httpAddress = fmt.Sprintf("http://%s", httpAddress)
+	}
+	u, err := url.Parse(httpAddress)
 	if err != nil {
-		log.Fatalf("FATAL: could not parse %#v: %v", s.Opts.HttpAddress, err)
+		log.Fatalf("FATAL: could not parse %#v: %v", httpAddress, err)
 	}
 
 	var networkType string
